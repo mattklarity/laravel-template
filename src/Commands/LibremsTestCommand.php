@@ -8,14 +8,14 @@ use Psr\Log\LoggerInterface;
 
 class LibremsTestCommand extends Command
 {
-    public $signature = 'librems-test';
+    public $signature = 'librems-devices';
 
     public $description = 'My command';
 
     public function handle(LoggerInterface $log): int
     {
         // read config that your package published
-        $table = config('librems.audit_table', 'audits');
+        $table = config('librems.devices', 'devices');
 
         // DB facade (works with the host app’s connection)
         $count = DB::table($table)->count();
