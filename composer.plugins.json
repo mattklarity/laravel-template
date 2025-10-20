@@ -1,0 +1,8 @@
+{
+  "repositories": [
+    {"type":"vcs","url":"git@github.com:mattklarity/laravel-template.git"}
+  ],
+  "require": {
+    "klarity/librems-test": "dev-main"
+  }
+}
