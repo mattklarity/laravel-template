@@ -8,29 +8,6 @@ use Klarity\LibremsTest\Commands\LibremsTestCommand;
 
 class LibremsTestServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void {
-
-	    if ($this->app->runningInConsole()) {
-		$this->publishes([__DIR__.'/../../config/librems.php' => config_path('librems.php')], 'config');
-
-		// If you ship migrations / config:
-		$this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
-		$this->commands([
-		    \Klarity\LibremsTest\Commands\LibremsTestCommand::class,
-		]);
-
-
-	    }
-
-    }
-
-    public function register(): void
-    {
-	    // lets config('librems.*') work even if user hasn't published the file
-	    $this->mergeConfigFrom(__DIR__.'/../../config/librems.php', 'librems');
-    }
-
     public function configurePackage(Package $package): void
     {
 
@@ -41,7 +18,7 @@ class LibremsTestServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('librems-test')
-            ->hasConfigFile()
+            ->hasConfigFile('librems')
             ->hasViews()
             ->hasMigration('create_librems_test_table')
             ->hasCommand(LibremsTestCommand::class);
