@@ -15,6 +15,9 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+      {"type": "vcs", "url": "https://github.com/mattklarity/laravel-template"}
+    ],
     "require": {
         "php": "^8.4|^8.3",
         "spatie/laravel-package-tools": "^1.16",
