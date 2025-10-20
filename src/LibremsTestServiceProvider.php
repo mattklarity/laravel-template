@@ -11,13 +11,16 @@ class LibremsTestServiceProvider extends PackageServiceProvider
     public function boot(): void {
 
 	    if ($this->app->runningInConsole()) {
+		$this->publishes([__DIR__.'/../../config/librems.php' => config_path('librems.php')], 'config');
+
+		// If you ship migrations / config:
+		$this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+
 		$this->commands([
 		    \Klarity\LibremsTest\Commands\LibremsTestCommand::class,
 		]);
 
-		// If you ship migrations / config:
-		$this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-		$this->publishes([__DIR__.'/../../config/librems.php' => config_path('librems.php')], 'config');
+
 	    }
 
     }

@@ -2,4 +2,5 @@
 
 use Klarity\LibremsTest\Tests\TestCase;
 
-uses(TestCase::class)->in(__DIR__);
+uses(Illuminate\Foundation\Testing\RefreshDatabase::class)->in('Feature', 'Unit');
+
