@@ -27,11 +27,11 @@ class LibremsTestDB extends Command
         $log->info('librems-test ran', compact('count'));
 
         $this->info("Rows in {$table}: {$count}");
+
         return self::SUCCESS;
 
         $this->comment('All done');
 
         return self::SUCCESS;
     }
-
 }
