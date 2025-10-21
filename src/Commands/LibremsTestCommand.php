@@ -29,9 +29,6 @@ class LibremsTestCommand extends Command
         $this->info("Rows in {$table}: {$count}");
         return self::SUCCESS;
 
-        $this->comment('All done');
-
-        return self::SUCCESS;
     }
 
 }
