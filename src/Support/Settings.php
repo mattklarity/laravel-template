@@ -2,7 +2,6 @@
 
 namespace Klarity\LibremsTest\Support;
 
-use App\Models\User;
 // 👇 add Hooks\
 use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook;
 
