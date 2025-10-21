@@ -4,8 +4,10 @@ namespace Klarity\LibremsTest;
 
 use Klarity\LibremsTest\Commands\LibremsTestCommand;
 use Klarity\LibremsTest\Support\AuditHelper;
+use Klarity\LibremsTest\Support\Settings;
 use LibreNMS\Interfaces\Plugins\PluginManagerInterface;
-use LibreNMS\Interfaces\Plugins\SettingsHook;
+use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook;
+
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
