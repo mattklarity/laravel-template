@@ -53,4 +53,3 @@ class LibremsTestServiceProvider extends PackageServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'librems-test');
     }
 }
-

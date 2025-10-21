@@ -21,6 +21,7 @@ class Settings extends BaseSettingsHook
         return [
             'settings' => $settings,
             'version'  => config('librems.version', 'dev'),
+            'example' => 'Hello from Settings::data()',
         ];
     }
 }
