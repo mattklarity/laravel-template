@@ -1,27 +1,26 @@
 <?php
-
 namespace Klarity\LibremsTest\Support;
 
-use LibreNMS\Interfaces\Plugins\SettingsHook;
+use App\Models\User;
+use LibreNMS\Interfaces\Plugins\SettingsHook as BaseSettingsHook;
 
-class Settings extends SettingsHook
+class Settings extends BaseSettingsHook
 {
-    // Point to your settings blade. Default is 'resources.views.settings' inside the plugin.
+    // Render this blade when user clicks “Settings” under your plugin
     public string $view = 'librems-test::settings';
 
-    // (optional) gate access
-    public function authorize(\App\Models\User $user): bool
+    // Control who can see/save settings
+    public function authorize(User $user): bool
     {
-        return $user->can('admin'); // or whatever you like
+        return $user->can('admin');
     }
 
-    // Inject extra data into the view. $settings = values stored by LibreNMS for your plugin.
+    // Inject data into the view. $settings contains persisted values for your plugin.
     public function data(array $settings = []): array
     {
         return [
             'settings' => $settings,
-            'example'  => 'Hello from Settings::data()',
+            'version'  => config('librems.version', 'dev'),
         ];
     }
 }
-
