@@ -8,14 +8,16 @@ use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook;
 
 class Settings implements SettingsHook
 {
+    public string $view = 'librems-test::settings';
+
     public function view(): string
     {
-        return 'librems-test::settings';
+        return $this->view;
     }
 
-    public function authorize(User $user): bool
+    public function authorize($user): bool
     {
-        return $user->can('admin');
+        return method_exists($user, 'can') ? $user->can('admin') : true;
     }
 
     public function data(array $settings = []): array

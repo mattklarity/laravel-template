@@ -29,29 +29,32 @@ class LibremsTestServiceProvider extends PackageServiceProvider
         $this->app->singleton(AuditHelper::class, fn () => new AuditHelper);
     }
 
-    // you can keep boot(), or switch to bootingPackage()/packageBooted()—either works.
-    public function boot(): void
-    {
-        parent::boot(); // keep Spatie’s defaults
+	public function boot(): void
+	{
+	    parent::boot();
 
-        $plugin = 'librems-test'; // must match the slug you enable in LibreNMS → Plugins
+	    $plugin = 'librems-test';
 
-        /** @var PluginManagerInterface $pm */
-        $pm = $this->app->make(PluginManagerInterface::class);
+	    // 1) register the view namespace FIRST
+	    // (hasViews() already does this too, but calling it explicitly here ensures
+	    // it's available before the hook is published)
+	    $this->loadViewsFrom(__DIR__ . '/../resources/views', 'librems-test');
 
-        // register the Settings hook for this plugin
-        $pm->publishHook(
-            $plugin,
-            SettingsHook::class,
-            \Klarity\LibremsTest\Support\Settings::class
-        );
+	    /** @var PluginManagerInterface $pm */
+	    $pm = $this->app->make(PluginManagerInterface::class);
 
-        // if disabled, skip the rest
-        if (! $pm->pluginEnabled($plugin)) {
-            return;
-        }
+	    // 2) publish the Settings hook using the Hooks\ interface
+	    $pm->publishHook(
+		$plugin,
+		\LibreNMS\Interfaces\Plugins\Hooks\SettingsHook::class,
+		\Klarity\LibremsTest\Support\Settings::class
+	    );
 
-        // give your views a namespace for Blade like: librems-test::settings
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'librems-test');
-    }
+	    // 3) (optional) if you want to skip further plugin-specific boot when disabled,
+	    //    do it AFTER the two lines above (so Settings still registers)
+	    // if (! $pm->pluginEnabled($plugin)) {
+	    //     return;
+	    // }
+	}
+
 }
