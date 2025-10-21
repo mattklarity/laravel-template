@@ -2,9 +2,9 @@
 
 namespace Klarity\LibremsTest;
 
+use Klarity\LibremsTest\Commands\LibremsTestCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Klarity\LibremsTest\Commands\LibremsTestCommand;
 
 class LibremsTestServiceProvider extends PackageServiceProvider
 {
@@ -23,8 +23,9 @@ class LibremsTestServiceProvider extends PackageServiceProvider
             ->hasMigration('create_librems_test_table')
             ->hasCommand(LibremsTestCommand::class);
     }
+
     protected function registeringPackage(): void
     {
-        $this->app->singleton(AuditHelper::class, fn () => new AuditHelper());
+        $this->app->singleton(AuditHelper::class, fn () => new AuditHelper);
     }
 }
