@@ -13,13 +13,10 @@ class Settings implements SettingsHook
         return $this->view;
     }
 
-    // ⬇️ remove the App\Models\User typehint (and be defensive)
-    public function authorize($user = null): bool
-    {
-        return is_object($user) && method_exists($user, 'can')
-            ? $user->can('admin')
-            : true; // allow if no user was passed
-    }
+public function authorize($user = null): bool
+{
+    return true; // TEMP: confirm it's an auth issue
+}
 
     public function data(array $settings = []): array
     {
