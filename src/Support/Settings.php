@@ -13,10 +13,10 @@ class Settings implements SettingsHook
         return $this->view;
     }
 
-public function authorize($user = null): bool
-{
-    return true; // TEMP: confirm it's an auth issue
-}
+    public function authorize($user = null): bool
+    {
+        return true; // TEMP: confirm it's an auth issue
+    }
 
     public function data(array $settings = []): array
     {
