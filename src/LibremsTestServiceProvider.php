@@ -23,4 +23,8 @@ class LibremsTestServiceProvider extends PackageServiceProvider
             ->hasMigration('create_librems_test_table')
             ->hasCommand(LibremsTestCommand::class);
     }
+    protected function registeringPackage(): void
+    {
+        $this->app->singleton(AuditHelper::class, fn () => new AuditHelper());
+    }
 }
