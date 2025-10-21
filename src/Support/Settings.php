@@ -20,8 +20,7 @@ class Settings extends SettingsHook
     {
         return [
             'settings' => $settings,
-            'example'  => 'Hello from Settings::data()',
+            'example' => 'Hello from Settings::data()',
         ];
     }
 }
-
