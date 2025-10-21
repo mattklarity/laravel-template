@@ -2,7 +2,7 @@
 namespace Klarity\LibremsTest\Support;
 
 use App\Models\User;
-use LibreNMS\Interfaces\Plugins\SettingsHook as BaseSettingsHook;
+use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook as BaseSettings;
 
 class Settings extends BaseSettingsHook
 {
