@@ -4,13 +4,13 @@ namespace Klarity\LibremsTest\Support;
 
 use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook;
 
-class Settings extends SettingsHook
+class Settings implements SettingsHook
 {
     public string $view = 'librems-test::settings';
 
     public function view(): string
     {
-        return $this->view;
+	return 'librems-test::settings';
     }
 
     public function authorize($user = null): bool
@@ -20,6 +20,9 @@ class Settings extends SettingsHook
 
     public function data(array $settings = []): array
     {
-        return ['settings' => $settings];
+        return [
+            'settings'  => $settings,
+            'something' => 'Hello from Settings',
+        ];
     }
 }
