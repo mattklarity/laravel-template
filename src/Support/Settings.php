@@ -10,7 +10,7 @@ class Settings implements SettingsHook
 
     public function view(): string
     {
-	return 'librems-test::settings';
+        return 'librems-test::settings';
     }
 
     public function authorize($user = null): bool
@@ -21,7 +21,7 @@ class Settings implements SettingsHook
     public function data(array $settings = []): array
     {
         return [
-            'settings'  => $settings,
+            'settings' => $settings,
             'something' => 'Hello from Settings',
         ];
     }
