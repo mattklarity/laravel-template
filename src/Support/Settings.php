@@ -4,7 +4,7 @@ namespace Klarity\LibremsTest\Support;
 
 use LibreNMS\Interfaces\Plugins\Hooks\SettingsHook;
 
-class Settings implements SettingsHook
+class Settings extends SettingsHook
 {
     public string $view = 'librems-test::settings';
 
